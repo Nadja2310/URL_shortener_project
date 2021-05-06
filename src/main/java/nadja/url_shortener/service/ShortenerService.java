@@ -13,13 +13,6 @@ public class ShortenerService {
         return base64String.substring(3,base64String.length()-1);
     }
 
-    /** Generates 64 bit hash from byte array of the given length and seed.
-     *
-     * @param data   byte array to hash
-     * @param length length of the array to hash
-     * @param seed   initial seed value
-     * @return 64 bit hash of the given array
-     **/
     protected long hash64(String text) {
         final byte[] data = text.getBytes();
         int seed = 0xe17a1465;
