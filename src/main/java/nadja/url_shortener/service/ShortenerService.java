@@ -1,8 +1,11 @@
 package nadja.url_shortener.service;
 
+import org.springframework.stereotype.Service;
+
 import java.nio.ByteBuffer;
 import java.util.Base64;
 
+@Service
 public class ShortenerService {
     public String get_shortURL(String longUrl) {
         // murmurhash (long) -> byte[] -> base64 -> substring (3);

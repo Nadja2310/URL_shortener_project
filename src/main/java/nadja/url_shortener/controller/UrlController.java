@@ -7,13 +7,12 @@ import nadja.url_shortener.repo.IUrlRepo;
 import nadja.url_shortener.service.ShortenerService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-
+@RestController
+@RequestMapping("/shortenerUrl")
 public class UrlController {
-    private ShortenerService shortenerService;
+    private final ShortenerService shortenerService;
     private final IUrlRepo urlRepo;
     private final String HOST;
 
