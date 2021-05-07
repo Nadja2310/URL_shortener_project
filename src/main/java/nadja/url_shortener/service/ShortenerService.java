@@ -2,13 +2,14 @@ package nadja.url_shortener.service;
 
 import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.repo.IUrlRepo;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class ShortenerService {
     IUrlRepo urlRepo;
 
     //Нужно ли проверять что пользователь на этот длинный адрес уже создавал короткий?
-    //ТОГДА нужна проверка при записи в базу данных
+    // ТОГДА нужна проверка при записи в базу данных
     //пока просто вносим данные в базу без проверки на уникальность
     public void save(Url newUrl) {
         urlRepo.save(newUrl);

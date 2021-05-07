@@ -5,7 +5,6 @@ import java.util.Base64;
 
 public class StringShortenerHelper {
     public String get_shortURL(String longUrl) {
-        // murmurhash (long) -> byte[] -> base64 -> substring (3);
         long hash64bit = hash64(longUrl);
         byte[] arrByte = longToBytes(hash64bit);
         String base64String = Base64.getUrlEncoder().encodeToString(arrByte);
