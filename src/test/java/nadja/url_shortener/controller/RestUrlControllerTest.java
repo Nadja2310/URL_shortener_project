@@ -18,7 +18,7 @@ import java.time.LocalDate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class UrlControllerTest {
+class RestUrlControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -37,9 +37,9 @@ class UrlControllerTest {
     @Test
     void convertLongUrl() {
 
-       Mockito.when(shortenerService.get_shortURL("\"http://microsoft.com")).thenReturn("http://localhost:8080/Yf74Nb4");
+       Mockito.when(shortenerService.get_shortURL("http://microsoft.com")).thenReturn("http://localhost:8080/Yf74Nb4");
         mockMvc.perform(post("ddasda"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk());3.
     }
 }

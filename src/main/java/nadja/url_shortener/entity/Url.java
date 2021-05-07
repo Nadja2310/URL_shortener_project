@@ -12,10 +12,10 @@ public class Url {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    String shortUrl;
-    String longUrl;
-    int userID=0;
-    LocalDate expiration_date;
+    private String shortUrl;
+    private String longUrl;
+    private int userID=0;
+    private LocalDate expiration_date;
 
     public String getLongUrl() {
         return longUrl;

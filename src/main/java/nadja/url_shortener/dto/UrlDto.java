@@ -22,4 +22,8 @@ public class UrlDto {
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
