@@ -3,5 +3,5 @@ create table URL IF NOT EXISTS(
     SHORT_URL varchar(300) not null
     LONG_URL varchar(200) not null
     EXPIRATION_DATE timestamp not null
-    USER_ID int DEFAULT (0)
+    USERID int DEFAULT (0)
 );

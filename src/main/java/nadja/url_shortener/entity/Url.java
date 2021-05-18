@@ -17,6 +17,17 @@ public class Url {
     private int userID=0;
     private LocalDate expiration_date;
 
+    public Url() {
+    }
+
+    public Url(int id,String longUrl,String shortUrl, int userID, LocalDate expiration_date) {
+        this.id = id;
+        this.shortUrl = shortUrl;
+        this.longUrl = longUrl;
+        this.userID = userID;
+        this.expiration_date = expiration_date;
+    }
+
     public String getLongUrl() {
         return longUrl;
     }

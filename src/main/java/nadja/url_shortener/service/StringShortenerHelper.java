@@ -1,8 +1,10 @@
 package nadja.url_shortener.service;
 
+import org.springframework.stereotype.Service;
+
 import java.nio.ByteBuffer;
 import java.util.Base64;
-
+@Service
 public class StringShortenerHelper {
     public String get_shortURL(String longUrl) {
         long hash64bit = hash64(longUrl);
