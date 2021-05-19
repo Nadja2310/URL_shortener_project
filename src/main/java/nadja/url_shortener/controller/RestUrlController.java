@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 //, produces = "application/json"
 
 @RestController
-@RequestMapping(value = "/shortenerUrl")
+@RequestMapping(value = "/shortenerUrl", produces = "application/json")
+        //consumes = "application/json", produces = "application/json")
 public class RestUrlController {
     private final ShortenerService shortenerService;
     private final String HOST;
@@ -26,10 +27,10 @@ public class RestUrlController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ShortUrlDto convertLongUrl(@RequestBody UrlDto longUrlDto) {
-        Url url = shortenerService.createUrl(longUrlDto);
-        shortenerService.save(url);
-        longUrlDto.setId(url.getId());
-        return new ShortUrlDto(HOST + "/" + url.getShortUrl());
+    public @ResponseBody ShortUrlDto convertLongUrl(@RequestBody UrlDto longUrlDto) {
+        Url urlLong_getShort = shortenerService.createUrl(longUrlDto);
+        //longUrlDto.setId(urlLong_getShort.getId());
+        //longUrlDto.setShortUrl(urlLong_getShort.getShortUrl());
+        return new ShortUrlDto(HOST + "/" + urlLong_getShort.getShortUrl());
     }
 }

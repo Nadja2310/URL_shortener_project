@@ -52,16 +52,14 @@ private ObjectMapper objectMapper;
     void convertLongUrl() throws Exception {
         Url urlTest=new Url(1,"http://microsoft.com","Yf74Nb4",0, LocalDate.now().plusDays(3));
         when(shortenerService.createUrl(any(UrlDto.class))).thenReturn(urlTest);
-        //when(shortenerService.save(urlTest));
 
         mockMvc.perform(post("/shortenerUrl")
-                        .accept(MediaType.TEXT_PLAIN )
+                      //  .accept(MediaType.TEXT_PLAIN )
         .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"long_url\": \"http://microsoft.com\"}")
-        )
-                .andExpect(status().isOk())
+                .content("{ \"longUrl\": \"http://microsoft.com\"}"))
                 .andDo(print())
-                .andExpect(content().json("{\"$.shortUrl\":\"http://localhost:8080/Yf74Nb4\"}"));
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"shortUrl\":\"http://localhost:8080/Yf74Nb4\"}"));
 
     }
 }

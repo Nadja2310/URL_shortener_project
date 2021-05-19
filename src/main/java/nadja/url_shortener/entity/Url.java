@@ -28,6 +28,14 @@ public class Url {
         this.expiration_date = expiration_date;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public LocalDate getExpiration_date() {
+        return expiration_date;
+    }
+
     public String getLongUrl() {
         return longUrl;
     }

@@ -4,9 +4,10 @@ import org.springframework.stereotype.Service;
 
 import java.nio.ByteBuffer;
 import java.util.Base64;
-@Service
+//@Service
 public class StringShortenerHelper {
-    public String get_shortURL(String longUrl) {
+
+    public static String get_shortURL(String longUrl) {
         long hash64bit = hash64(longUrl);
         byte[] arrByte = longToBytes(hash64bit);
         String base64String = Base64.getUrlEncoder().encodeToString(arrByte);
@@ -14,8 +15,8 @@ public class StringShortenerHelper {
         return base64String.substring(3,base64String.length()-1);
     }
 
-    protected long hash64(String text) {
-        final byte[] data = text.getBytes();
+    protected static long hash64(String text) {
+        byte[] data = text.getBytes();
         int seed = 0xe17a1465;
         int length = data.length;
         final long m = 0xc6a4a7935bd1e995L;
@@ -66,7 +67,7 @@ public class StringShortenerHelper {
         return h;
     }
 
-    private byte[] longToBytes(long x) {
+    private static byte[] longToBytes(long x) {
         ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
         buffer.putLong(x);
         return buffer.array();
