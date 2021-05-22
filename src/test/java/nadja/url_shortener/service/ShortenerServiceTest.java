@@ -1,4 +1,4 @@
-package nadja.url_shortener;
+package nadja.url_shortener.service;
 
 import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.service.ShortenerService;
