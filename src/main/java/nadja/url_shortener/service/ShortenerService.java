@@ -1,6 +1,6 @@
 package nadja.url_shortener.service;
 
-import nadja.url_shortener.dto.UrlDto;
+import nadja.url_shortener.dto.LongUrlDto;
 import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.repo.IUrlRepo;
 import org.springframework.stereotype.Service;
@@ -20,13 +20,11 @@ public class ShortenerService {
     }
 
     public String get_shortURL(String long_Url) {
-      //  StringShortenerHelper stringShortenerHelper = new StringShortenerHelper();
         return StringShortenerHelper.get_shortURL(long_Url);
     }
 
-    public Url createUrl(UrlDto longUrlDto){
+    public Url createUrl(LongUrlDto longUrlDto){
         Url addShortUrl = new Url();
-      //  addShortUrl.setLongUrl(longUrlDto.getLongUrl());
         addShortUrl.setUserID(0);
         addShortUrl.setExpiration_date(LocalDate.now().plusDays(3));
         String shortenedUrl = new StringShortenerHelper().get_shortURL(longUrlDto.getLongUrl());
