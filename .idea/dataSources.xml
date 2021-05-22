@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="shortened_url" uuid="a09adad1-7688-4cf1-a01d-15a238e7dcfe">
+    <data-source source="LOCAL" name="url" uuid="d7a91f23-c5f3-4795-859a-aaefc57c7786">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/shortened_url</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/url</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

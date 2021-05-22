@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="shortened_url">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.20">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.21">
     <root id="1">
       <ServerVersion>13.2</ServerVersion>
       <DateStyle>mdy</DateStyle>
@@ -807,7 +807,6 @@ sequence|table|16531|16533|1
     <database id="4" parent="1" name="shortened_url">
       <ObjectId>16588</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>540</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <role id="5" parent="1" name="pg_execute_server_program">
@@ -855,27 +854,18 @@ sequence|table|16531|16533|1
     </tablespace>
     <schema id="16" parent="4" name="information_schema">
       <ObjectId>13158</ObjectId>
-      <Acl>10=UC/10
-U/10
-</Acl>
       <StateNumber>293</StateNumber>
       <Owner>postgres</Owner>
     </schema>
     <schema id="17" parent="4" name="pg_catalog">
       <ObjectId>11</ObjectId>
       <Comment>system catalog schema</Comment>
-      <Acl>10=UC/10
-U/10
-</Acl>
       <StateNumber>286</StateNumber>
       <Owner>postgres</Owner>
     </schema>
     <schema id="18" parent="4" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <Acl>10=UC/10
-UC/10
-</Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
       <IntrospectionStateNumber>541</IntrospectionStateNumber>
