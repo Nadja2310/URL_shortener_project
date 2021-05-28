@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-//id (int, auto increment), short_url, long_url, expiration_date, user_id (always 0 for now)
 public class Url {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
