@@ -2,8 +2,10 @@ package nadja.url_shortener.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nadja.url_shortener.dto.LongUrlDto;
+import nadja.url_shortener.dto.ShortUrlDto;
 import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.repo.IUrlRepo;
+import nadja.url_shortener.service.RedirectService;
 import nadja.url_shortener.service.ShortenerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,21 +16,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
-class RestUrlControllerTest {
+class RedirectRestControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
@@ -36,10 +40,7 @@ class RestUrlControllerTest {
     @Autowired
     WebApplicationContext wac;
     @MockBean
-    private ShortenerService shortenerService;
-
-    @MockBean
-    private IUrlRepo urlRepo;
+    private RedirectService redirectService;
 
     @BeforeEach
     public void before() {
@@ -50,14 +51,13 @@ class RestUrlControllerTest {
     @Test
     void convertLongUrl() throws Exception {
         Url urlTest = new Url(1, "http://microsoft.com", "Yf74Nb4", 0, LocalDate.now().plusDays(3));
-        when(shortenerService.createUrl(any(LongUrlDto.class))).thenReturn(urlTest);
+        String shortUrlDtoTest="Yf74Nb4";
+        when(redirectService.searchLongUrl("Yf74Nb4")).thenReturn(urlTest);
 
-        mockMvc.perform(post("/shortenerUrl")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"longUrl\": \"http://microsoft.com\"}"))
+        mockMvc.perform(get("/"+shortUrlDtoTest))
+                .andExpect(status().isMovedPermanently())
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().json("{\"shortUrl\":\"http://localhost:8080/Yf74Nb4\"}"));
-
+                .andExpect(MockMvcResultMatchers.header().string("Location", urlTest.getLongUrl()))
+                .andReturn();
     }
 }
