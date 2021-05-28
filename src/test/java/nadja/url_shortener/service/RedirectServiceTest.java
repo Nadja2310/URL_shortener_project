@@ -1,6 +1,5 @@
 package nadja.url_shortener.service;
 
-import nadja.url_shortener.dto.LongUrlDto;
 import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.repo.IUrlRepo;
 import org.junit.jupiter.api.Test;

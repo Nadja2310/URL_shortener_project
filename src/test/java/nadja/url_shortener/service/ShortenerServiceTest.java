@@ -1,8 +1,5 @@
 package nadja.url_shortener.service;
 
-import nadja.url_shortener.entity.Url;
-import nadja.url_shortener.service.ShortenerService;
-import nadja.url_shortener.service.StringShortenerHelper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
