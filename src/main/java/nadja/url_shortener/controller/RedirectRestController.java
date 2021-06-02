@@ -1,5 +1,6 @@
 package nadja.url_shortener.controller;
 
+import nadja.url_shortener.controller.exeption.ShortUrlNotFoundException;
 import nadja.url_shortener.dto.ShortUrlDto;
 import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.service.RedirectService;
@@ -18,15 +19,14 @@ public class RedirectRestController {
     }
 
     @GetMapping("/{shortUrl}")
-    public ModelAndView convertLongUrl(@PathVariable ShortUrlDto shortUrl) {
+    public ModelAndView convertLongUrl(@PathVariable ShortUrlDto shortUrl) throws ShortUrlNotFoundException {
         Url redirectUrl = redirectService.searchLongUrl(shortUrl.getShortUrl());
         if (redirectUrl == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "url is expired or does not exist");
+            throw ShortUrlNotFoundException.createWith(shortUrl.getShortUrl());
         } else {
             RedirectView red = new RedirectView(redirectUrl.getLongUrl(), false);
             red.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
             return new ModelAndView(red);
         }
     }
-
 }

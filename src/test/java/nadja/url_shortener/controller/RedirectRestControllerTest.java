@@ -1,6 +1,7 @@
 package nadja.url_shortener.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nadja.url_shortener.controller.exeption.ShortUrlNotFoundException;
 import nadja.url_shortener.dto.LongUrlDto;
 import nadja.url_shortener.dto.ShortUrlDto;
 import nadja.url_shortener.entity.Url;
@@ -59,5 +60,15 @@ class RedirectRestControllerTest {
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.header().string("Location", urlTest.getLongUrl()))
                 .andReturn();
+    }
+    @Test
+    void convertLongUrl_Exception () throws Exception {
+        Url urlTest = new Url(1, "http://microsoftExciption.com", "Yf74Nb8", 0, LocalDate.now().minusDays(1));
+        String shortUrlDtoTest="Yf74Nb8";
+        when(redirectService.searchLongUrl("Yf74Nb8")).thenReturn(null);
+
+        mockMvc.perform(get("/"+shortUrlDtoTest))
+                .andExpect(status().isNotFound())
+                .andDo(print());
     }
 }
