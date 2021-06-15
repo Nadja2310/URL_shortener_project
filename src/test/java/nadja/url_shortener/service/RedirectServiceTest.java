@@ -26,6 +26,7 @@ class RedirectServiceTest {
     private Url urlTest;
     Url urlRedirectServiceTest = new Url(1, "http://microsoft.com", "Yf74Nb4", 0, LocalDate.now().plusDays(3));
     RedirectService redirectService=new RedirectService(urlRepo);
+
     @Test
     void searchLongUrl() {
         when(urlRepo.findUrlByShortUrl("Yf74Nb4")).thenReturn(urlRedirectServiceTest);
