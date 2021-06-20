@@ -19,9 +19,8 @@ private final IUrlRepo urlRepo;
 
     @Cacheable(value = "urlCache", key = "#searchShortUrl")
     public Url searchLongUrl(String searchShortUrl) {
-        log.info("searchShortUrl: {}", searchShortUrl);
-        Optional<Url> urlRepo=this.urlRepo.getUrlByShortUrlAndExpiration_date(searchShortUrl);
-        Url url=checkingIfTheLinkIsFound(urlRepo);
+        Optional<Url> urlFromRepo=urlRepo.getUrlByShortUrlAndExpiration_date(searchShortUrl);
+        Url url=checkingIfTheLinkIsFound(urlFromRepo);
          return url;
     }
     public Url checkingIfTheLinkIsFound(Optional<Url> urlOptional){

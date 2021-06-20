@@ -35,13 +35,13 @@ class RedirectServiceTest {
     }
     @Test
     void expiredLongUrl() {
-        Optional<Url> urlOptional=null;
+        Url urlRedirectServiceTest = new Url(1, "http://ok.com", "Y555Nb4", 0, LocalDate.of(2021,5,05));
+        Optional<Url> urlOptional= urlRepo.getUrlByShortUrlAndExpiration_date(urlRedirectServiceTest.getShortUrl());
         assertNull(redirectService.checkingIfTheLinkIsFound(urlOptional));
     }
 
     @Test
     void checkingIfTheLinkIsFound_thenIsUrl_notEmpty(){
-        RedirectService redirectService=new RedirectService(urlRepo);
         Url urlRedirectServiceTest = new Url(1, "http://ok.com", "Y874Nb4", 0, LocalDate.of(2021,5,05));
         Optional<Url> urlOptional= Optional.of(urlRedirectServiceTest);
         Url res=redirectService.checkingIfTheLinkIsFound(urlOptional);
@@ -49,5 +49,11 @@ class RedirectServiceTest {
         assertEquals(urlRedirectServiceTest.getLongUrl(),res.getLongUrl());
         assertEquals("Y874Nb4",res.getShortUrl());
 
+    }
+    @Test
+    void searchLongUrl_url_isNull(){
+        Url urlTest = new Url(1, "http://microsoft85.com", "Yf74Nb8", 0, LocalDate.of(2021, 05, 24));
+        Url url = urlRepo.save(urlTest);
+        assertNull(redirectService.searchLongUrl(urlTest.getShortUrl()));
     }
 }
