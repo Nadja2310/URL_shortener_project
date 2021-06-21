@@ -8,7 +8,13 @@ public abstract class CacheEventLogger implements CacheEventListener<Object,Obje
 
     @Override
     public void onEvent(
-            CacheEvent<?, ?> cacheEvent) {
+            CacheEvent cacheEvent) {
+        System.out.println("custom Caching event" +
+                cacheEvent.getType() +
+                cacheEvent.getKey() +
+                cacheEvent.getOldValue() +
+                cacheEvent.getNewValue()
+        );
         log.info(
                 "custom Caching event {} {} {} {}",
                 cacheEvent.getType(),
