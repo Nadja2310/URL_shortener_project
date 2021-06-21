@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface IUrlRepo extends CrudRepository<Url, Integer> {
     Url findUrlByShortUrl(String shortUrl);
 
-    @Query("select s from Url s where s.shortUrl = :shortUrl and s.expiration_date >= current_date")
+    @Query("SELECT s FROM Url s WHERE s.expiration_date >= current_date AND s.shortUrl = :shortUrl")
     Optional<Url> getUrlByShortUrlAndExpiration_date(@Param("shortUrl") String shortUrl);
 }
