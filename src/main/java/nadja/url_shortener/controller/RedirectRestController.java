@@ -20,9 +20,6 @@ public class RedirectRestController {
         this.redirectService = redirectService;
     }
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-
     @GetMapping("/{shortUrl}")
     public ModelAndView convertLongUrl(@PathVariable ShortUrlDto shortUrl) throws ShortUrlNotFoundException {
         Url redirectUrl = redirectService.searchLongUrl(shortUrl.getShortUrl());

@@ -9,6 +9,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 
 @Service
 public class StatisticsProducerService {
+
     @Autowired
     private KafkaTemplate<String, RedirectStat> kafkaTemplate;
 
