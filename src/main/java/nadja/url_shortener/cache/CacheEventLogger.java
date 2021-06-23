@@ -1,9 +1,9 @@
 package nadja.url_shortener.cache;
 
-import lombok.extern.slf4j.Slf4j;
 import org.ehcache.event.CacheEvent;
 import org.ehcache.event.CacheEventListener;
-@Slf4j
+
+//@Slf4j
 public abstract class CacheEventLogger implements CacheEventListener<Object,Object> {
 
     @Override
@@ -15,13 +15,13 @@ public abstract class CacheEventLogger implements CacheEventListener<Object,Obje
                 cacheEvent.getOldValue() +
                 cacheEvent.getNewValue()
         );
-        log.info(
+/*        log.info(
                 "custom Caching event {} {} {} {}",
                 cacheEvent.getType(),
                 cacheEvent.getKey(),
                 cacheEvent.getOldValue(),
                 cacheEvent.getNewValue()
-        );
+        );*/
     }
 
 }
