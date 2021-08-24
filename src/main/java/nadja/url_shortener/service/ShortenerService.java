@@ -5,7 +5,6 @@ import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.repo.IUrlRepo;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Cacheable;
 import java.time.LocalDate;
 
 @Service

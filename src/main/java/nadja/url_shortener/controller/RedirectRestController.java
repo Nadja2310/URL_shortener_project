@@ -4,11 +4,8 @@ import nadja.url_shortener.controller.exeption.ShortUrlNotFoundException;
 import nadja.url_shortener.dto.ShortUrlDto;
 import nadja.url_shortener.entity.Url;
 import nadja.url_shortener.service.RedirectService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -23,6 +20,7 @@ public class RedirectRestController {
     @GetMapping("/{shortUrl}")
     public ModelAndView convertLongUrl(@PathVariable ShortUrlDto shortUrl) throws ShortUrlNotFoundException {
         Url redirectUrl = redirectService.searchLongUrl(shortUrl.getShortUrl());
+        System.out.println(redirectUrl);
         if (redirectUrl == null) {
             throw ShortUrlNotFoundException.createWith(shortUrl.getShortUrl());
         } else {

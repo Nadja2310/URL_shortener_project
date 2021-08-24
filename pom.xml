@@ -16,11 +16,6 @@
     <description>url_shortener project</description>
     <properties>
         <java.version>1.8</java.version>
-
-        <flyway.user>postgres</flyway.user>
-        <flyway.password>Zazimbabve26</flyway.password>
-        <flyway.schemas>url</flyway.schemas>
-        <flyway.url>jdbc:postgresql://localhost:5432/url</flyway.url>
     </properties>
     <dependencies>
         <dependency>
@@ -28,6 +23,10 @@
             <artifactId>spring-boot-starter-cache</artifactId>
             <version>2.5.0</version>
         </dependency>
+        <dependency>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-core</artifactId>
+    </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -58,10 +57,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -138,6 +134,24 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>7.14.0</version>
+                <configuration>
+                    <user>postgres</user>
+                    <password>12345</password>
+                    <schemas>url</schemas>
+                    <url>jdbc:postgresql://localhost:5432/url</url>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.197</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

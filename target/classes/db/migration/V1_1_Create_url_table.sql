@@ -1,4 +1,4 @@
-create table if not exists URL
+create table IF NOT EXISTS URL_Table
 (
     ID              BIGSERIAL PRIMARY KEY,
     short_url       varchar(200) not null,
