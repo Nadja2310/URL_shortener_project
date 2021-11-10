@@ -25,7 +25,7 @@ public class ShortenerService {
 
     public Url createUrl(LongUrlDto longUrlDto){
         Url addShortUrl = new Url();
-        addShortUrl.setUserID(0);
+        //addShortUrl.setUserID(0);
         addShortUrl.setExpiration_date(LocalDate.now().plusDays(3));
         String shortenedUrl = new StringShortenerHelper().get_shortURL(longUrlDto.getLongUrl());
         addShortUrl.setShortUrl(shortenedUrl);

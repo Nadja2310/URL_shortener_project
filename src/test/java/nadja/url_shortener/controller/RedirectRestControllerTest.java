@@ -51,7 +51,7 @@ class RedirectRestControllerTest {
 
     @Test
     void convertLongUrl() throws Exception {
-        Url urlTest = new Url(1, "http://microsoft.com", "Yf74Nb4", 0, LocalDate.now().plusDays(3));
+        Url urlTest = new Url(1, "http://microsoft.com", "Yf74Nb4", LocalDate.now().plusDays(3));
         String shortUrlDtoTest="Yf74Nb4";
         when(redirectService.searchLongUrl("Yf74Nb4")).thenReturn(urlTest);
 
@@ -63,7 +63,7 @@ class RedirectRestControllerTest {
     }
     @Test
     void convertLongUrl_Exception () throws Exception {
-        Url urlTest = new Url(1, "http://microsoftExciption.com", "Yf74Nb8", 0, LocalDate.now().minusDays(1));
+        Url urlTest = new Url(1, "http://microsoftExciption.com", "Yf74Nb8", LocalDate.now().minusDays(1));
         String shortUrlDtoTest="Yf74Nb8";
         when(redirectService.searchLongUrl("Yf74Nb8")).thenReturn(null);
 

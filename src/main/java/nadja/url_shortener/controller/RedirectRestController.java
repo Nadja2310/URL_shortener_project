@@ -20,7 +20,7 @@ public class RedirectRestController {
     @GetMapping("/{shortUrl}")
     public ModelAndView convertLongUrl(@PathVariable ShortUrlDto shortUrl) throws ShortUrlNotFoundException {
         Url redirectUrl = redirectService.searchLongUrl(shortUrl.getShortUrl());
-        System.out.println(redirectUrl);
+        //System.out.println(redirectUrl.getShortUrl());
         if (redirectUrl == null) {
             throw ShortUrlNotFoundException.createWith(shortUrl.getShortUrl());
         } else {

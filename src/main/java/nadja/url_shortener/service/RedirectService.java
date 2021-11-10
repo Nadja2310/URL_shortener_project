@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -27,7 +28,7 @@ public class RedirectService {
         Optional<Url> urlFromRepo = urlRepo.getUrlByShortUrlAndExpiration_date(searchShortUrl);
         System.out.println("Cache not hit");
         Url url = checkingIfTheLinkIsFound(urlFromRepo);
-        kafkaStatisticsProducerService(url);
+        //kafkaStatisticsProducerService(url);
         return url;
     }
 

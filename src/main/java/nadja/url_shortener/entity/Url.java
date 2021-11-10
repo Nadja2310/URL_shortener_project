@@ -1,35 +1,27 @@
 package nadja.url_shortener.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "url")
 public class Url implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String shortUrl;
     private String longUrl;
-    private int userID=0;
     private LocalDate expiration_date;
 
     public Url() {
     }
 
-    public Url(int id,String longUrl,String shortUrl, int userID, LocalDate expiration_date) {
+    public Url(int id,String longUrl,String shortUrl,LocalDate expiration_date) {
         this.id = id;
         this.shortUrl = shortUrl;
         this.longUrl = longUrl;
-        this.userID = userID;
         this.expiration_date = expiration_date;
-    }
-
-    public int getUserID() {
-        return userID;
     }
 
     public LocalDate getExpiration_date() {
@@ -58,10 +50,6 @@ public class Url implements Serializable {
 
     public void setLongUrl(String longUrl) {
         this.longUrl = longUrl;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public void setExpiration_date(LocalDate expiration_date) {

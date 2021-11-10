@@ -48,7 +48,7 @@ class RestUrlControllerTest {
 
     @Test
     void convertLongUrl() throws Exception {
-        Url urlTest = new Url(1, "http://microsoft.com", "Yf74Nb4", 0, LocalDate.now().plusDays(3));
+        Url urlTest = new Url(1, "http://microsoft.com", "Yf74Nb4", LocalDate.now().plusDays(3));
         when(shortenerService.createUrl(any(LongUrlDto.class))).thenReturn(urlTest);
 
         mockMvc.perform(post("/shortenerUrl")

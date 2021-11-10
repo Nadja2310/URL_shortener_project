@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 class RedirectService_SearchLongUrl_Test {
     @Autowired
@@ -29,10 +31,11 @@ class RedirectService_SearchLongUrl_Test {
     @Test
     void searchLongUrl_thenIsUrl_notEmpty(){
         RedirectService redirectService=new RedirectService(urlRepo);
-        Url urlRedirectServiceTest = new Url(1, "http://ok.com", "Y874Nb4", 0, LocalDate.now().plusDays(3));
+        Url urlRedirectServiceTest = new Url(1, "http://ok.com", "Y874Nb4", LocalDate.now().plusDays(3));
         Url url = urlRepo.save(urlRedirectServiceTest);
+        System.out.println(url+"  urlRepo");
         Url expectedUrl=redirectService.searchLongUrl(urlRedirectServiceTest.getShortUrl());
-        System.out.println(expectedUrl);
+        System.out.println("redirect service "+expectedUrl);
         assertEquals(expectedUrl.getLongUrl(),urlRedirectServiceTest.getLongUrl());
         assertEquals("Y874Nb4",urlRedirectServiceTest.getShortUrl());
 
@@ -40,7 +43,7 @@ class RedirectService_SearchLongUrl_Test {
     @Test
     void searchLongUrl_url_isNull(){
         RedirectService redirectService=new RedirectService(urlRepo);
-        Url urlTest = new Url(1, "http://microsoft85.com", "Yf74Nb8", 0, LocalDate.of(2021, 05, 24));
+        Url urlTest = new Url(1, "http://microsoft85.com", "Yf74Nb8",LocalDate.of(2021, 05, 24));
         Url url = urlRepo.save(urlTest);
         assertNull(redirectService.searchLongUrl(urlTest.getShortUrl()));
     }

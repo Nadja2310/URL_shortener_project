@@ -50,7 +50,7 @@ class RedirectServiceCacheTest {
     @Test
     public void cacheTest() throws Exception {
         RedirectService redirectService=Mockito.spy(new RedirectService(urlRepo));
-        Url urlTest = new Url(1, "http://microsoft85.com", "Yf74Nb8", 0, LocalDate.now().plusDays(3));
+        Url urlTest = new Url(1, "http://microsoft85.com", "Yf74Nb8", LocalDate.now().plusDays(3));
         Url url = urlRepo.save(urlTest);
         System.out.println(redirectService.searchLongUrl(urlTest.getShortUrl()));
         System.out.println(redirectService.searchLongUrl(urlTest.getShortUrl()));

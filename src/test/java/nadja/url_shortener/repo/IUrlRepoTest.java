@@ -4,6 +4,7 @@ import nadja.url_shortener.entity.Url;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class IUrlRepoTest {
 
     @Autowired
@@ -18,7 +20,7 @@ public class IUrlRepoTest {
 
     @Test
     void findUrlByShortUrl() {
-        Url urlTest = new Url(1, "http://ok.com", "Y55555", 0, LocalDate.of(2021, 05, 24));
+        Url urlTest = new Url(1, "http://ok.com", "Y55555", LocalDate.of(2021, 11, 24));
 
         Url urlSaved = urlRepo.save(urlTest);
         Url url = urlRepo.findUrlByShortUrl("Y55555");
@@ -28,7 +30,7 @@ public class IUrlRepoTest {
 
     @Test
     void getUrlByShortUrlAndExpiration_date_then_expiredLongUrl() {
-        Url urlTest = new Url(1, "http://microsoft85.com", "Yf74Nb8", 0, LocalDate.of(2021, 05, 24));
+        Url urlTest = new Url(1, "http://microsoft85.com", "Yf74Nb8", LocalDate.of(2021, 05, 24));
         Url url = urlRepo.save(urlTest);
         Optional<Url> expiredLongUrl = urlRepo.getUrlByShortUrlAndExpiration_date("Yf74Nb8");
         assertFalse(expiredLongUrl.isPresent());
@@ -36,7 +38,7 @@ public class IUrlRepoTest {
 
     @Test
     void getUrlByShortUrlAndExpiration_date_thenOk() {
-        Url urlTest = new Url(1, "http://microsoft.com", "Yf74Nb4", 0, LocalDate.now().plusDays(3));
+        Url urlTest = new Url(1, "http://microsoft.com", "Yf74Nb4", LocalDate.now().plusDays(3));
 
         Url url = urlRepo.save(urlTest);
         try {

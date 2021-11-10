@@ -1,7 +1,5 @@
 package nadja.url_shortener.dto;
 
-import java.time.LocalDate;
-
 public class LongUrlDto {
     String longUrl;
 
